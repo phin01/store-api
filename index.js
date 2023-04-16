@@ -13,11 +13,12 @@ app.use(cors());
 const {combine, timestamp, label, printf} = winston.format;
 const myFormat = printf(({level, message, label, timestamp}) => `${timestamp} [${label}] ${level} ${message}`);
 
+
 global.logger = winston.createLogger({
     level: "silly",
     transports: [
         new (winston.transports.Console)(),
-        new (winston.transports.File({filename: "store-api.log"}))(),
+        new (winston.transports.File)({filename: "store-api.log"}),
     ],
     format: combine(
         label({ label: "store-api"}),
@@ -32,4 +33,8 @@ app.use("/sale", salesRouter);
 app.use("/supplier", suppliersRouter);
 app.use("/product", productsRouter);
 
+app.use((err, req, res, next) => {
+    logger.error(`${req.method} ${req.baseUrl} - ${err.message}`);
+    res.status(400).send({error : err.message});
+});
 app.listen(3000, () => console.log("API Started"));
