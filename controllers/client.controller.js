@@ -28,4 +28,22 @@ async function getClients(req, res, next) {
     }
 }
 
-export default { createClient, getClients }
+async function getClient(req, res, next) {
+
+    try {
+        let client_id = req.params.id;
+        let returnedClient = await ClientService.getClient(client_id);
+        if(!returnedClient) {
+            res.status(200).send(`client ${client_id} not found`);
+            logger.info(`GET /client/${client_id} not found`);
+        }
+        else {
+            res.send(returnedClient);
+            logger.info(`GET /client/${client_id}`);
+        }
+    } catch (err) {
+        next(err);
+    }
+}
+
+export default { createClient, getClients, getClient }

@@ -8,4 +8,8 @@ async function getClients() {
     return await ClientRepository.getClients();
 }
 
-export default { createClient, getClients }
+async function getClient(id) {
+    return await ClientRepository.getClient(id);
+}
+
+export default { createClient, getClients, getClient }
