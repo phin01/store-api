@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+# Connection String file
+/repositories/connectionString.json

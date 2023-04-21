@@ -1,0 +1,3 @@
+[{
+    "connectionString": "postgres://xxxxxx:xxxxxxxxx@xxxxx.db.elephantsql.com/xxxxxx"
+}]
