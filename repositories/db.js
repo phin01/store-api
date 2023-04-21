@@ -16,7 +16,7 @@ async function getConnectionString() {
     console.log("see config-sample.json for an example");
     return config;
   }
-};
+}
 
 async function connect() {
 
@@ -32,4 +32,4 @@ async function connect() {
 
 }
 
-export default { connect };
+export { connect }
