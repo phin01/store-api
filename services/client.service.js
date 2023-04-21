@@ -4,4 +4,8 @@ async function createClient(client) {
     return await ClientRepository.insertClient(client);
 }
 
-export default { createClient }
+async function getClients() {
+    return await ClientRepository.getClients();
+}
+
+export default { createClient, getClients }

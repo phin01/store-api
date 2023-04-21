@@ -16,4 +16,19 @@ async function insertClient(client) {
     }
 }
 
-export default {insertClient}
+async function getClients() {
+
+    const conn = await connect();
+    try {
+        const sql = "SELECT * FROM clients";
+        const res = await conn.query(sql);
+        return res.rows;
+    } 
+    catch (error) {
+        throw error;
+    } finally {
+        conn.release();
+    }
+}
+
+export default {insertClient, getClients}
