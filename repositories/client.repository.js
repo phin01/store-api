@@ -47,4 +47,19 @@ async function getClient(id) {
     }
 }
 
-export default {insertClient, getClients, getClient}
+async function deleteClient(id) {
+
+    const conn = await connect();
+    try {
+        const sql = "DELETE FROM clients WHERE client_id = $1";
+        const values = [id];
+        const res = await conn.query(sql, values);
+    } 
+    catch (error) {
+        throw error;
+    } finally {
+        conn.release();
+    }
+}
+
+export default {insertClient, getClients, getClient, deleteClient}
